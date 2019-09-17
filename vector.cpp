@@ -26,10 +26,7 @@ size_t		Vector::size() const
 
 bool		Vector::empty()
 {
-	if (m_size == 0)
-		return true;
-	else
-		return false;
+	return m_size == 0;
 }
 
 void		Vector::move(size_t start)
