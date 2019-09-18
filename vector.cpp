@@ -24,7 +24,7 @@ size_t		Vector::size() const
 	return	m_size;
 }
 
-bool		Vector::empty()
+bool		Vector::empty() const
 {
 	return m_size == 0;
 }
