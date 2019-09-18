@@ -1,5 +1,7 @@
 #include <cstdlib>
 #include <stdexcept>
+#include <algorithm>
+#include <iostream>
 
 #define MIN_CAPACITY 10
 #define	CAP_FACTOR	 2
@@ -13,7 +15,7 @@ class		Vector{
 		size_t	size() const;
 		void	erase(size_t pos);
 		void	clear();
-		bool	empty();
+		bool	empty() const;
 		int		&operator[](size_t pos){
 			if (pos > m_size)
 				throw	std::out_of_range("element out of bound");

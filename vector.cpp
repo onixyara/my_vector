@@ -16,7 +16,7 @@ void		Vector::push_back(int value)
 {
 	if (m_size >= m_capacity)
 		resize();
-	*(arr + m_size++) = value;
+	arr[m_size++] = value;
 }
 
 size_t		Vector::size() const
@@ -31,7 +31,7 @@ bool		Vector::empty() const
 
 void		Vector::move(size_t start)
 {
-	for (int i = start; i < m_size; i++)
+	for (size_t i = start; i < m_size; i++)
 		std::swap(arr[i], arr[i + 1]);	
 }
 
@@ -51,8 +51,11 @@ void		Vector::erase(size_t pos)
 void		Vector::resize()
 {
 	size_t	capacity = m_capacity * CAP_FACTOR;
-	int		*tmp = new int(capacity);
-	arr = tmp;
+	int		*tmp;
+	tmp = new int[capacity];
+	for (size_t i = 0; i < m_capacity; i++)
+		tmp[i] = arr[i];
+	delete arr;
+	arr = tmp; 
 	m_capacity = capacity;
-	delete tmp;
 }
