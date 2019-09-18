@@ -18,7 +18,7 @@ int			main()
 	vec.push_back(6);
 	vec.push_back(6);
 	vec.push_back(6);
-	// for (size_t i = 0; i < vec.size(); i++)
-	// 	std::cout << vec[i] << " ";
+	for (size_t i = 0; i < vec.size(); i++)
+		std::cout << vec[i] << " ";
 	return 1;
 }

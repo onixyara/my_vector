@@ -4,7 +4,7 @@ Vector::Vector()
 {
 	m_capacity = MIN_CAPACITY;
 	m_size = 0;
-	arr = new int(m_capacity);
+	arr = new int[m_capacity];
 }
 
 Vector::~Vector()
