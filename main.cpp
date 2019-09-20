@@ -2,7 +2,7 @@
 
 int			main()
 {
-	Vector	vec;
+	Vector<int>	vec;
 
 	vec.push_back(6);
 	vec.push_back(6);
