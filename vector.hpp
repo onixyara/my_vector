@@ -14,7 +14,7 @@ class		Vector{
 		Vector();
 		~Vector();
 
-		void	push_back(T value);
+		void	push_back(T const& value);
 		size_t	size() const;
 		void	erase(size_t pos);
 		void	clear();
@@ -49,7 +49,7 @@ Vector<T>::~Vector()
 }
 
 template <class T>
-void		Vector<T>::push_back(T value)
+void		Vector<T>::push_back(T const& value)
 {
 	if (m_size >= m_capacity)
 		resize();
