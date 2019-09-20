@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <iostream>
 
-#define MIN_CAPACITY 10
+#define MIN_CAPACITY 0
 #define	CAP_FACTOR	 2
 
 template <class T>
@@ -45,7 +45,7 @@ Vector<T>::Vector()
 template <class T>
 Vector<T>::~Vector()
 {
-	delete arr;
+	delete[] arr;
 }
 
 template <class T>
@@ -87,6 +87,7 @@ void		Vector<T>::erase(size_t pos)
 	if (pos > m_size)
 		throw std::out_of_range("erasing an element out of bounds");
 	move(pos);
+	arr[m_size].~T();
 	m_size--;
 }
 
@@ -97,7 +98,7 @@ void		Vector<T>::resize()
 	T		*tmp = new T[capacity];
 	for (size_t i = 0; i < m_capacity; i++)
 		tmp[i] = arr[i];
-	delete arr;
+	delete[] arr;
 	arr = tmp; 
 	m_capacity = capacity;
 }

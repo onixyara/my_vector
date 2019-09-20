@@ -1,24 +1,18 @@
 #include "vector.hpp"
+//#include <vector>
+#include <iostream>
+
+struct A
+{
+	A(){ std::cout << "constructor\n";}
+	~A() {std::cout << "destructor\n";}
+};
 
 int			main()
 {
-	Vector<int>	vec;
 
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	vec.push_back(6);
-	for (size_t i = 0; i < vec.size(); i++)
-		std::cout << vec[i] << " ";
-	return 1;
+	Vector<A>	vec;
+	A a;
+	vec.erase(0);
+	return 0;
 }
