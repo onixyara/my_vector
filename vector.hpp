@@ -16,9 +16,12 @@ class		Vector{
 
 		void	push_back(T const& value);
 		size_t	size() const;
+		size_t	capacity() const;
 		void	erase(size_t pos);
 		void	clear();
+		void	shrink_to_fit();
 		bool	empty() const;
+		void	reserve(size_t size);
 		T		operator[](size_t pos){
 			if (pos > m_size)
 				throw	std::out_of_range("element out of bound");
@@ -63,9 +66,26 @@ size_t		Vector<T>::size() const
 }
 
 template <class T>
+size_t		Vector<T>::capacity() const
+{
+	return	m_capacity;
+}
+
+template <class T>
 bool		Vector<T>::empty() const
 {
 	return m_size == 0;
+}
+
+template <class T>
+void		Vector<T>::shrink_to_fit()
+{
+	T		*tmp = new T[m_size];
+	for (size_t i = 0; i < m_size; i++)
+		tmp[i] = arr[i];
+	delete[] arr;
+	arr = tmp;
+	m_capacity = m_size;
 }
 
 template <class T>
@@ -92,13 +112,18 @@ void		Vector<T>::erase(size_t pos)
 }
 
 template <class T>
-void		Vector<T>::resize()
+void		Vector<T>::reserve(size_t size)
 {
-	size_t	capacity = m_capacity * CAP_FACTOR;
-	T		*tmp = new T[capacity];
-	for (size_t i = 0; i < m_capacity; i++)
+	T		*tmp = new T[size];
+	for (size_t i = 0; i < m_size; i++)
 		tmp[i] = arr[i];
 	delete[] arr;
-	arr = tmp; 
-	m_capacity = capacity;
+	arr = tmp;
+	m_capacity = size;
+}
+
+template <class T>
+void		Vector<T>::resize()
+{
+	reserve(m_capacity * CAP_FACTOR);
 }
