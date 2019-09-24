@@ -1,5 +1,5 @@
 #include "vector.hpp"
-//#include <vector>
+#include <vector>
 #include <iostream>
 
 struct A
@@ -10,6 +10,8 @@ struct A
 
 int			main()
 {
+	std::vector<int> abs;
+	abs.max_size();
 
 	Vector<A>	vec;
 	A a;
