@@ -14,5 +14,7 @@ int			main()
 	Vector<A>	vec;
 	A a;
 	vec.erase(0);
+	while(1)
+	{}
 	return 0;
 }
