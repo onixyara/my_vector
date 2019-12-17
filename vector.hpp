@@ -11,8 +11,34 @@
 template <class T>
 class		Vector{
 	public:
+        //ROF
 		Vector();
 		~Vector();
+        Vector(const Vector& other);
+        Vector(Vector&& other);
+		Vector<T>&		operator=(Vector&& other)
+		{
+			if (this != &other)
+			{
+				m_size = other.m_size;
+				m_capacity = other.m_capacity;
+				arr = other.arr;
+				other.m_size = 0;
+				other.m_capacity = 0;
+				other.arr = nullptr;
+			}
+			return *this;
+		};
+        Vector<T>&		operator=(const Vector& other)
+		{
+			if (this != &other)
+			{
+				m_size = other.m_size;
+				m_capacity = other.m_capacity;
+				arr = other.arr;
+			}
+			return *this;
+		};
 
 		void	push_back(T const& value);
 		size_t	size() const;
@@ -23,7 +49,7 @@ class		Vector{
 		bool	empty() const;
 		void	reserve(size_t size);
 		T		operator[](size_t pos){
-			if (pos > m_size)
+			if (pos > m_size || pos < 0)
 				throw	std::out_of_range("element out of bound");
 			else
 				return *(arr + pos);
@@ -49,6 +75,25 @@ template <class T>
 Vector<T>::~Vector()
 {
 	delete[] arr;
+}
+
+template <class T>
+Vector<T>::Vector(const Vector& other)
+{
+	m_size = other.m_size;
+	m_capacity = other.m_capacity;
+	arr = other.arr;
+}
+
+template <class T>
+Vector<T>::Vector(Vector&& other)
+{
+	m_size = other.m_size;
+	m_capacity = other.m_capacity;
+	arr = other.arr;
+	other.m_size = 0;
+	other.m_capacity = 0;
+	other.arr = nullptr;
 }
 
 template <class T>
@@ -119,11 +164,12 @@ void		Vector<T>::reserve(size_t size)
 		tmp[i] = arr[i];
 	delete[] arr;
 	arr = tmp;
-	m_capacity = size;
+	m_capacity = m_size;
 }
 
 template <class T>
 void		Vector<T>::resize()
 {
 	reserve(m_capacity * CAP_FACTOR);
+	m_capacity *= CAP_FACTOR;
 }

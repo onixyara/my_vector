@@ -2,21 +2,17 @@
 #include <vector>
 #include <iostream>
 
-struct A
-{
-	A(){ std::cout << "constructor\n";}
-	~A() {std::cout << "destructor\n";}
-};
-
 int			main()
 {
-	std::vector<int> abs;
-	abs.max_size();
+	Vector<int> arr;
+	Vector<int>	arr2;
 
-	Vector<A>	vec;
-	A a;
-	vec.erase(0);
-	while(1)
-	{}
+	arr.push_back(2);
+	arr.push_back(2);
+	arr.push_back(2);
+	arr2 = std::move(arr);
+
+	std::cout << "Arr2 = " << arr2.size() << " Arr = " << arr.size() << std::endl;
+
 	return 0;
 }
