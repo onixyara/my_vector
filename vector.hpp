@@ -5,13 +5,14 @@
 #include <algorithm>
 #include <iostream>
 
-#define MIN_CAPACITY 0
-#define	CAP_FACTOR	 2
+#define MIN_CAPACITY 0 //constexpr
+#define	CAP_FACTOR   2 
 
 template <class T>
 class		Vector{
 	public:
         //ROF
+	// add comments
 		Vector();
 		~Vector();
         Vector(const Vector& other);
